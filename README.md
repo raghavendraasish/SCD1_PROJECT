@@ -20,14 +20,22 @@ This method overwrites the old data in the dimension table with the new data. It
 Approach
 
 1.First I transfer all the datasets to Virtual machine on my system using WinSCP.
+
 2.After getting Datasets on EdgeNode, put all datasets in a Archive folder as a BackUp purpose.
+
 3.Then export Day1 data to SQL database in a table(dummy_data), also added one column for comaparing updated timestamp.
+
 4.From RDBMS, I export the Day1 data to HDFS using sqoop.
+
 5.After that created a table in Hive and loaded data(Day1) into it from HDFS.
+
 6.Then, created a External table and loaded data from Managed table to it and
 done partitioning on the basis of Year and then on the basis of Months.
+
 7.Then implemented SCD Type-1 logic using SQL query with the concept of Join and Union.
+
 8.Again created one intermediate table in hive, and inserted all data from external table to this and implemented SQL query for getting updated values only for successfull implementation of SCD Type-1 for further Data coming next days.
+
 9.Then created a table in SQL and export all records from intermediate to it using sqoop for Data Reconciliation.
 
 
